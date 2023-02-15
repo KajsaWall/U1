@@ -1,0 +1,110 @@
+@font-face {
+    font-family: RobotoCondensed_regular;
+    src: url("../fonts/RobotoCondensed_regular/RobotoCondensedRegular.ttf");
+}
+@font-face {
+    font-family: RobotoCondensed_bold;
+    src: url("../fonts/RobotoCondensed_bold/RobotoCondensedBold.ttf");
+}
+@font-face {
+    font-family: RobotoCondensed_light;
+    src: url("../fonts/RobotoCondensed_light/RobotoCondensedLight.ttf");
+}
+
+body {
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: pink;
+    height: 100vh;
+    width: 100vw;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    padding: 0;
+    margin: 0;
+}
+
+#logo {
+    justify-self: baseline;
+    width: 35px;
+    height: 35px;
+    background-image: url("../media/logo.png");
+    background-size: cover;
+    background-position: center;
+}
+#logotext{
+    display: flex;
+    font-family: RobotoCondensed_regular;
+    font-size: 21px;
+    align-items: center;
+    margin: 0;
+    justify-self: end;
+}
+
+h1 {
+    text-align: center;
+    font-family: RobotoCondensed_regular;
+    font-size: 40px;
+    padding-top: 55px;
+}
+
+label {
+    font-family: RobotoCondensed_regular;
+    padding-top: 5px;
+}
+input {
+    padding: 5px;
+}
+
+#feedback {
+    text-align: center;
+    font-family: RobotoCondensed_regular;
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+button {
+    padding:15px;
+    font-family: RobotoCondensed_regular;
+    font-size: 20px;
+}
+
+#register {
+    text-align: center;
+    font-family: RobotoCondensed_regular;
+    font-size: 20px;
+    text-decoration: underline;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+footer {
+    font-family: RobotoCondensed_regular;
+    font-size: 14px;
+    margin: 0;
+    display: flex;
+    justify-content: end;
+    align-self: start;
+    position: absolute;
+    padding: 20px 20px 20px 0px;
+    bottom: 0px;
+
+}
+
+footer > * {
+    margin: 0;
+}

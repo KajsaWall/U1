@@ -4,29 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="quiz.css">
-    <link rel="stylesheet" href="login_register.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="css/login_register.css">
     <title>Document</title>
 </head>
 <body>
     <main class="container login">
 
+        <header>
         <div id="logo"></div>
-        <h2>Dog Breed Quiz</h2>
+        <h2 id="logotext">Dog Breed Quiz</h2>  
+        </header>
+        
 
         <h1>LOGIN</h1>
 
-        <label for="">User Name:</label>
+        <label for="username">User Name:</label>
         <input type="text" id="username">
-        <label for="">Password:</label>
+        <label for="password">Password:</label>
         <input type="text" id="password">
 
-        <p>Let the magic start</p>
+        <p id="feedback">Let the magic start!</p>
 
         <button>Login</button>
 
-        <h2>New to this? Register for free</h2>
+        <h2 id="register">New to this? Register for free</h2>
+
+        <footer>
+            <p id="footer">The Dog Breed Quiz is made possible thanks to the free API by <a href="#">DOG CEO Zine</a></p>
+        </footer>
 
     </main>
     <script src="js/data.js"></script>
