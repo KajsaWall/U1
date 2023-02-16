@@ -61,7 +61,8 @@ h1 {
     text-align: center;
     font-family: RobotoCondensed_regular;
     font-size: 40px;
-    padding-top: 55px;
+    padding-top: 65px;
+    padding-bottom: 20px;
 }
 
 
@@ -112,4 +113,29 @@ footer {
 
 footer > * {
     margin: 0;
+}
+
+#contact {
+    height: 0;
+    width: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:absolute;
+    z-index: 1;
+}
+
+#contact > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 10%;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+    flex-direction: column;
+    flex-basis: 1;
 }

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: RobotoCondensed_regular;
+    src: url("../fonts/RobotoCondensed_regular/RobotoCondensedRegular.ttf");
+}
+@font-face {
+    font-family: RobotoCondensed_bold;
+    src: url("../fonts/RobotoCondensed_bold/RobotoCondensedBold.ttf");
+}
+@font-face {
+    font-family: RobotoCondensed_light;
+    src: url("../fonts/RobotoCondensed_light/RobotoCondensedLight.ttf");
+}
+
+body {
+    font-family: RobotoCondensed_regular;
+}
