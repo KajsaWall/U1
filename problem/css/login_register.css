@@ -11,59 +11,8 @@
     src: url("../fonts/RobotoCondensed_light/RobotoCondensedLight.ttf");
 }
 
-body {
-    background-color: black;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-}
 
-main {
-    background-color: pink;
-    transition-property: background-color;
-    transition-duration: 1s;
-    height: 100vh;
-    width: 100vw;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding: 20px;
-    position: relative;
-}
 
-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    padding: 0;
-    margin: 0;
-}
-
-#logo {
-    justify-self: baseline;
-    width: 35px;
-    height: 35px;
-    background-image: url("../media/logo.png");
-    background-size: cover;
-    background-position: center;
-}
-#logotext{
-    display: flex;
-    font-family: RobotoCondensed_regular;
-    font-size: 21px;
-    align-items: center;
-    margin: 0;
-    justify-self: end;
-}
-
-h1 {
-    text-align: center;
-    font-family: RobotoCondensed_regular;
-    font-size: 40px;
-    padding-top: 65px;
-    padding-bottom: 20px;
-}
 
 
 label {
@@ -72,13 +21,17 @@ label {
 }
 input {
     padding: 5px;
+    margin-bottom: 5px;
 }
 
-#feedback {
+#p {
     text-align: center;
     font-family: RobotoCondensed_regular;
     font-size: 14px;
-    padding-top: 10px;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
@@ -87,7 +40,7 @@ button {
     font-size: 20px;
 }
 
-#register {
+#container > h2 {
     text-align: center;
     font-family: RobotoCondensed_regular;
     font-size: 20px;
@@ -95,36 +48,22 @@ button {
     padding-top: 50px;
     padding-bottom: 50px;
 }
-#register:hover {
+#container > h2:hover {
     cursor: pointer;
 }
 
-footer {
-    font-family: RobotoCondensed_regular;
-    font-size: 14px;
-    margin: 0;
-    display: flex;
-    justify-content: end;
-    align-self: start;
-    position: absolute;
-    padding: 20px 20px 20px 0px;
-    bottom: 0px;
-}
-
-footer > * {
-    margin: 0;
-}
 
 #contact {
-    height: 0;
-    width: 0;
+    height: 100%;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.4);
-    opacity: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     position:absolute;
-    z-index: 1;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
 }
 
 #contact > div {
@@ -137,5 +76,42 @@ footer > * {
     text-align: center;
     border-radius: 20px;
     flex-direction: column;
-    flex-basis: 1;
+}
+
+#contact.hide {
+    display: none;
+}
+
+#feedback.hide {
+    display: none;
+}
+
+#feedback{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    z-index: 1;
+    height: 20%;
+    width: 90%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#feedback > button#close{
+    width: 90%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#feedback  > p {
+    font-size: 15px;
 }

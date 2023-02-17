@@ -1,50 +1,87 @@
 "use strict";
 
-document.getElementById("register").addEventListener("click", login_or_register_event);
 
 function login_or_register_event(event){
     if(document.querySelector("button").textContent==="Login") {
-        register();
+        register_setup();
     }
     else if (document.querySelector("button").textContent==="Register") {
-        login();
+        login_setup();
     }
 }
-function login(){
+
+function login_setup() {
+    document.querySelector("#container").innerHTML = "";
+    document.querySelector("main").classList.remove("register");
+    document.querySelector("main").classList.add("login");
     document.querySelector("main").style.backgroundColor="pink";
-    document.querySelector("h1").textContent="LOGIN";
-    document.querySelector("#feedback").textContent="Let the magic start!";
-    document.querySelector("button").textContent="Login";
-    document.querySelector("#register").textContent="New to this? Register for free";
+
+    const contact_div = document.createElement("div");
+    contact_div.setAttribute("id", "contact");
+    contact_div.classList.add("hide");
+    contact_div.innerHTML= `<div>Contacting server...</div>`;
+    document.querySelector("main").append(contact_div);
+
+    document.querySelector("#container").innerHTML = `
+    <h1>LOGIN</h1>
+
+    <label>User Name:</label>
+    <input type="text" id="username">
+    <label>Password:</label>
+    <input type="password" id="password">
+
+    <p id="p">Let the magic start!</p>
+
+    <button>Login</button>
+
+    <h2 id="link">New to this? Register for free</h2>
+    `;
+
+    document.getElementById("link").addEventListener("click", login_or_register_event);
+    document.querySelector("button").addEventListener("click", login_or_register);
 }
 
-function register() {
+function register_setup() {
+
+    document.querySelector("#container").innerHTML = "";
+    document.querySelector("main").classList.remove("login");
+    document.querySelector("main").classList.add("register");
     document.querySelector("main").style.backgroundColor="thistle";
-    document.querySelector("h1").textContent="REGISTER";
-    document.querySelector("#feedback").textContent="Ready when you are...";
-    document.querySelector("button").textContent="Register";
-    document.querySelector("#register").textContent="Already have an account? Go to logn";
+
+    document.querySelector("#container").innerHTML = `
+    <h1>REGISTER</h1>
+
+    <label>User Name:</label>
+    <input type="text" id="username">
+    <label>Password:</label>
+    <input type="password" id="password">
+
+    <p id="p">Ready when you are...</p>
+
+    <button>Register</button>
+
+    <h2 id="link">Already have an account? Go to login</h2>
+    `;
+
+    document.getElementById("link").addEventListener("click", login_or_register_event);
+    document.querySelector("button").addEventListener("click", login_or_register);
 }
 
-document.querySelector("button").addEventListener("click", login_or_register);
 
 let prefix = "https://teaching.maumt.se/apis/access/";
 
 function login_or_register (event) {
 
-document.getElementById("contact").style.opacity = "1";
-document.getElementById("contact").style.height = "100%";
-document.getElementById("contact").style.width = "100%";
-
-
     let _username = document.querySelector("#username").value;
     console.log(_username);
     let _password = document.querySelector("#password").value;
     console.log(_password);
+
     if(document.querySelector("button").textContent === "Login") {
+        
         let _prefix = `${prefix}?action=check_credentials&user_name=${_username}&password=${_password}`;
         const request_get = new Request (_prefix);
-        _fetch(request_get);
+        check_request(request_get, "login");
 
     } else if (document.querySelector("button").textContent === "Register") {
         let body_post = {
@@ -58,22 +95,7 @@ document.getElementById("contact").style.width = "100%";
             headers: {"Content-type": "application/json; charset=UTF-8"},
             body: JSON.stringify(body_post),
         });
-        _fetch(request_post);
+        check_request(request_post, "register");
     }
 }
 
-async function _fetch(url, _function) {
-
-    const response = await fetch(url);
-    if (response.ok){
-        const resource = await response.json();
-        console.log(resource);
-    }
-    else{
-        document.getElementById("contacttext").textContent = response.statusText;
-        let button = document.createElement("button");
-        button.textContent = "Close";
-        document.getElementById("contacttext").append(button);
-        console.log("something went wrong");
-    }
-}
