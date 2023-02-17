@@ -28,6 +28,7 @@
     background-position: center;
     margin-top: 15vh;
     margin-bottom: 10px;
+    border-radius: 20px;
 }
 
 .options {
@@ -45,4 +46,8 @@
 }
 .options > div:hover {
     cursor: pointer;
+}
+
+#answer_feedback.hide {
+    display: none;
 }
