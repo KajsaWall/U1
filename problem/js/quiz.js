@@ -1,5 +1,6 @@
 
 function quiz_setup (user_data) {
+    
     document.querySelector("#container").innerHTML = "";
     document.querySelector("#contact").classList.add("hide");
     document.querySelector("main").classList.remove("login");
@@ -12,7 +13,9 @@ function quiz_setup (user_data) {
     <button id="logout">logout</button>
     </div>
 
-    <div class="image"></div>
+    <div id="image_div">
+    <img class="image" src="media/logo.png">
+    </div>
 
     <div class="options">
         <div id="option1"></div>
@@ -32,8 +35,11 @@ function quiz_setup (user_data) {
     quiz_start();
 }
 
-async function quiz_start(user_data) {
-    document.querySelector(".image").style.backgroundImage = `url(".media/css/logo.png")`;
+async function quiz_start() {
+
+    document.getElementById("contact").classList.remove("hide");
+    document.querySelector("#contact > div").textContent = "Getting a random image";
+    document.querySelector("#image_div").innerHTML= `<img class="image" src="media/logo.png">`;
     
     document.querySelectorAll(".options > div")
         .forEach(option => {
@@ -44,14 +50,23 @@ async function quiz_start(user_data) {
     let breed = ALL_BREEDS[random_number(ALL_BREEDS.length)];
     console.log(breed);
     let breed_request = new Request (`https://dog.ceo/api/breed/${breed.url}/images`);
+
     let response = await fetch_function(breed_request);
     let resource = await response.json();
-    let image = resource.message[0];
-    console.log(image);
+    let image = resource.message[random_number(resource.message.length)];
 
-    document.querySelector(".image").style.backgroundImage = `url("${image}")`;
-    //document.querySelector(`#option${random_number(5)}`).textContent = breed.name;
-    let right_div = document.getElementById(`option${random_number(4)}`);
+    if(response.ok) {
+        document.querySelector("#image_div").innerHTML= `<img class="image" src="${image}">`;
+    } else {
+        document.querySelector("#image_div").innerHTML= `<img class="image" src="media/logo.png">`;
+    };
+
+
+    document.getElementById("contact").classList.add("hide");
+
+    let random_number_plus_one = random_number(4) + 1;
+    console.log(random_number_plus_one);
+    let right_div = document.getElementById(`option${random_number_plus_one}`);
     right_div.textContent = breed.name;
     let right_answer = right_div.textContent;
     console.log(right_answer);
@@ -74,6 +89,7 @@ async function quiz_start(user_data) {
         if(event.target.textContent === right_answer) {
             document.getElementById("answer_feedback").classList.remove("hide");
             document.getElementById("correct_or_false").textContent = "CORRECT!";
+            document.getElementById("answer_div").style.backgroundColor = "lightpink";
             document.getElementById("answer_button").textContent = "ONE MORE";
             document.getElementById("answer_button").addEventListener("click", restart_quiz);
         } else if(event.target.textContent !== right_answer) {
@@ -86,11 +102,14 @@ async function quiz_start(user_data) {
     }
 }
 
+
 function random_number(max) {
-    return Math.floor((Math.random() * max)+1);
-}
+    // Returnerar en random siffra mellan 0 och max - 1
+    return Math.floor(max * Math.random());
+  }
 
 function restart_quiz(event) {
     document.getElementById("answer_feedback").classList.add("hide");
     quiz_start();
 }
+
