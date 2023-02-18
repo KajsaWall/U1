@@ -1,3 +1,4 @@
+
 function quiz_setup (user_data) {
     document.querySelector("#container").innerHTML = "";
     document.querySelector("#contact").classList.add("hide");
@@ -31,13 +32,13 @@ function quiz_setup (user_data) {
     quiz_start();
 }
 
-async function quiz_start() {
-
+async function quiz_start(user_data) {
     document.querySelector(".image").style.backgroundImage = `url(".media/css/logo.png")`;
     
     document.querySelectorAll(".options > div")
         .forEach(option => {
             option.textContent = "";
+            console.log(option.textContent);
         })
 
     let breed = ALL_BREEDS[random_number(ALL_BREEDS.length)];
@@ -50,14 +51,16 @@ async function quiz_start() {
 
     document.querySelector(".image").style.backgroundImage = `url("${image}")`;
     //document.querySelector(`#option${random_number(5)}`).textContent = breed.name;
-    let right_answer = document.getElementById(`option${random_number(4)}`);
-    right_answer.textContent = breed.name;
-    let right = right_answer.textContent;
-    console.log(right);
+    let right_div = document.getElementById(`option${random_number(4)}`);
+    right_div.textContent = breed.name;
+    let right_answer = right_div.textContent;
+    console.log(right_answer);
 
     for(let i = 1; i < 5; i++) {
         if(document.getElementById(`option${i}`).textContent === "") {
-            document.getElementById(`option${i}`).textContent = ALL_BREEDS[random_number(ALL_BREEDS.length)].name;
+            let random_breed = ALL_BREEDS[random_number(ALL_BREEDS.length)].name;
+            console.log(random_breed);
+            document.getElementById(`option${i}`).textContent = random_breed;
         };
     }
 
@@ -67,32 +70,27 @@ async function quiz_start() {
         });
 
     function check_answer (event) {
-        if(event.target.textContent === right) {
-            console.log(right);
+
+        if(event.target.textContent === right_answer) {
             document.getElementById("answer_feedback").classList.remove("hide");
             document.getElementById("correct_or_false").textContent = "CORRECT!";
             document.getElementById("answer_button").textContent = "ONE MORE";
-            document.getElementById("answer_button").addEventListener("click", () => {
-                document.getElementById("answer_feedback").classList.add("hide");
-                quiz_start();
-            })
-        } else if(event.target.textContent !== right) {
-            console.log("wrong");
-            console.log(right);
+            document.getElementById("answer_button").addEventListener("click", restart_quiz);
+        } else if(event.target.textContent !== right_answer) {
             document.getElementById("answer_feedback").classList.remove("hide");
             document.getElementById("answer_div").style.backgroundColor = "hotpink";
             document.getElementById("correct_or_false").textContent = "Wrong Answer!";
             document.getElementById("answer_button").textContent = "ONE MORE";
-            document.getElementById("answer_button").addEventListener("click", () => {
-                document.getElementById("answer_feedback").classList.add("hide");
-            })
+            document.getElementById("answer_button").addEventListener("click", restart_quiz);
         }
     }
-
-   
-
 }
 
 function random_number(max) {
     return Math.floor((Math.random() * max)+1);
+}
+
+function restart_quiz(event) {
+    document.getElementById("answer_feedback").classList.add("hide");
+    quiz_start();
 }
