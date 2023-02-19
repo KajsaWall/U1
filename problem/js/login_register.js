@@ -67,7 +67,7 @@ function register_setup() {
 
     <button>Register</button>
 
-    <h2 id="link">Already have an account? Go to login</h2>
+    <h2 id="link">Already have an account? <br> Go to login</h2>
     `;
 
     document.getElementById("link").addEventListener("click", login_or_register_event);

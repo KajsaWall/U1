@@ -39,6 +39,9 @@ button {
     font-family: RobotoCondensed_regular;
     font-size: 20px;
 }
+button:hover {
+    cursor: pointer;
+}
 
 #container > h2 {
     text-align: center;

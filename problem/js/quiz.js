@@ -45,6 +45,7 @@ function quiz_setup () {
 
 async function quiz_start() {
 
+    document.querySelector(".options").classList.add("hide");
     let contact = contact_function();
     contact.classList.remove("hide");
     contact.innerHTML = `<div>Getting a random image...</div>`;
@@ -56,9 +57,14 @@ async function quiz_start() {
         .forEach(option => {
             option.textContent = "";
         })
+    let ALL_BREEDS_copy = ALL_BREEDS
+        .map(b => b);
 
-    let breed = ALL_BREEDS[random_number(ALL_BREEDS.length)];
-    let breed_request = new Request (`https://dog.ceo/api/breed/${breed.url}/images`);
+    let right_index = random_number(ALL_BREEDS.length);
+    let right_breed = ALL_BREEDS[right_index];
+    ALL_BREEDS_copy
+        .splice(right_index, 1);
+    let breed_request = new Request (`https://dog.ceo/api/breed/${right_breed.url}/images`);
 
     let response = await fetch_function(breed_request);
     let resource = await response.json();
@@ -66,7 +72,9 @@ async function quiz_start() {
 
     if(response.ok) {
         document.querySelector("#image_div").innerHTML= `<img class="image" src="${image}">`;
-        document.querySelector(".image").style.border = "orchid solid 2px";
+        document.querySelector(".image").style.border = "orchid solid 1px";
+        document.querySelector(".options").classList.remove("hide");
+
     } else {
         document.querySelector("#image_div").innerHTML= `<img class="image" src="media/logo.png">`;
     };
@@ -75,13 +83,16 @@ async function quiz_start() {
 
     let random_number_plus_one = random_number(4) + 1;
     let right_div = document.getElementById(`option${random_number_plus_one}`);
-    right_div.textContent = breed.name;
+    right_div.textContent = right_breed.name;
     let right_answer = right_div.textContent;
 
     for(let i = 1; i < 5; i++) {
         if(document.getElementById(`option${i}`).textContent === "") {
-            let random_breed = ALL_BREEDS[random_number(ALL_BREEDS.length)].name;
-            document.getElementById(`option${i}`).textContent = random_breed;
+            let index = random_number(ALL_BREEDS_copy.length);
+            let breed = ALL_BREEDS_copy[index];
+            ALL_BREEDS_copy
+                .splice(index, 1);
+            document.getElementById(`option${i}`).textContent = breed.name;
         };
     }
 
