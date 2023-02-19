@@ -40,7 +40,6 @@ header.quiz {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
     gap: 5px;
-
 }
 
 .options > div {
@@ -53,6 +52,7 @@ header.quiz {
     text-align: center;
     padding:5px;
 }
+
 .options > div:hover {
     cursor: pointer;
 }
@@ -94,6 +94,7 @@ header.quiz {
     margin: 0;
     padding-bottom: 10px;
 }
+
 #answer_feedback > div > button {
     width: 80%;
     height: 7vh;

@@ -1,24 +1,8 @@
-@font-face {
-    font-family: RobotoCondensed_regular;
-    src: url("../fonts/RobotoCondensed_regular/RobotoCondensedRegular.ttf");
-}
-@font-face {
-    font-family: RobotoCondensed_bold;
-    src: url("../fonts/RobotoCondensed_bold/RobotoCondensedBold.ttf");
-}
-@font-face {
-    font-family: RobotoCondensed_light;
-    src: url("../fonts/RobotoCondensed_light/RobotoCondensedLight.ttf");
-}
-
-
-
-
-
 label {
     font-family: RobotoCondensed_regular;
     padding-top: 5px;
 }
+
 input {
     padding: 5px;
     margin-bottom: 5px;
@@ -39,6 +23,7 @@ button {
     font-family: RobotoCondensed_regular;
     font-size: 20px;
 }
+
 button:hover {
     cursor: pointer;
 }
@@ -51,10 +36,10 @@ button:hover {
     padding-top: 25px;
     padding-bottom: 90px;
 }
+
 #container > h2:hover {
     cursor: pointer;
 }
-
 
 #contact {
     height: 100%;

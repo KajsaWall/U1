@@ -1,16 +1,18 @@
 "use strict";
 
+function login_or_register_event(event) {
 
-function login_or_register_event(event){
     if(document.querySelector("button").textContent==="Login") {
         register_setup();
-    }
-    else if (document.querySelector("button").textContent==="Register") {
+    } else if (document.querySelector("button").textContent==="Register") {
         login_setup();
     }
+
 }
 
+
 function login_setup() {
+
     document.querySelector("#container").innerHTML = "";
     document.querySelector("main").classList.remove("register");
     document.querySelector("main").classList.add("login");
@@ -20,14 +22,8 @@ function login_setup() {
     document.querySelector("footer").classList.remove("quiz");
     document.querySelector("header").classList.remove("quiz");
 
-
-    //const contact_div = document.createElement("div");
-    //contact_div.setAttribute("id", "contact");
-    //contact_div.innerHTML= `<div>Contacting server...</div>`;
-    //document.querySelector("main").append(contact_div);
-    let contact_div = contact_function();
-    contact_div.classList.add("hide");
-
+    let contact = contact_function();
+    contact.classList.add("hide");
 
     document.querySelector("#container").innerHTML = `
     <h1>LOGIN</h1>
@@ -46,7 +42,9 @@ function login_setup() {
 
     document.getElementById("link").addEventListener("click", login_or_register_event);
     document.querySelector("button").addEventListener("click", login_or_register);
+
 }
+
 
 function register_setup() {
 
@@ -72,39 +70,38 @@ function register_setup() {
 
     document.getElementById("link").addEventListener("click", login_or_register_event);
     document.querySelector("button").addEventListener("click", login_or_register);
+
 }
 
 
-let prefix = "https://teaching.maumt.se/apis/access/";
+function login_or_register(event) {
 
-function login_or_register (event) {
-
-
+    let prefix = "https://teaching.maumt.se/apis/access/";
     let _username = document.querySelector("#username").value;
-    console.log(_username);
     let _password = document.querySelector("#password").value;
-    console.log(_password);
     localStorage.setItem("User", _username);
 
     if(document.querySelector("button").textContent === "Login") {
-        
+
         let _prefix = `${prefix}?action=check_credentials&user_name=${_username}&password=${_password}`;
         const request_get = new Request (_prefix);
         check_request(request_get, "login");
 
     } else if (document.querySelector("button").textContent === "Register") {
+
         let body_post = {
             action: "register",
             user_name: _username,
             password: _password,
         };
-
         const request_post = new Request (prefix, {
             method: "POST",
             headers: {"Content-type": "application/json; charset=UTF-8"},
             body: JSON.stringify(body_post),
         });
+        
         check_request(request_post, "register");
+
     }
 }
 

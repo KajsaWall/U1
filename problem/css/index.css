@@ -17,7 +17,6 @@ body {
     height: 100vh;
     margin: 0;
     font-family: RobotoCondensed_regular;
-
 }
 
 main {
@@ -33,7 +32,6 @@ main {
     padding: 20px;
     position: relative;
     overflow-y: auto;
-
 }
 
 header {
@@ -52,6 +50,7 @@ header {
     background-size: cover;
     background-position: center;
 }
+
 #logotext{
     display: flex;
     font-family: RobotoCondensed_regular;
@@ -67,7 +66,6 @@ header {
     flex-direction: column;
     justify-content: flex-start;
 }
-
 
 h1 {
     text-align: center;
@@ -85,7 +83,6 @@ footer {
     justify-content: end;
     align-self: start;
     margin-top:10px;
-
 }
 
 footer > * {
