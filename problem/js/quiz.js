@@ -7,7 +7,13 @@ function quiz_setup () {
   //  document.querySelector("#contact").classList.add("hide");
     document.querySelector("main").classList.remove("login");
     document.querySelector("main").classList.remove("register");
+    document.querySelector("footer").classList.remove("login");
+
     document.querySelector("main").style.backgroundColor="plum";
+    document.querySelector("#container").classList.add("quiz");
+    document.querySelector("footer").classList.add("quiz");
+    document.querySelector("header").classList.add("quiz");
+
 
     document.querySelector("#container").innerHTML = `
     <div id="logged_in">
@@ -49,11 +55,9 @@ async function quiz_start() {
     document.querySelectorAll(".options > div")
         .forEach(option => {
             option.textContent = "";
-            console.log(option.textContent);
         })
 
     let breed = ALL_BREEDS[random_number(ALL_BREEDS.length)];
-    console.log(breed);
     let breed_request = new Request (`https://dog.ceo/api/breed/${breed.url}/images`);
 
     let response = await fetch_function(breed_request);
@@ -62,6 +66,7 @@ async function quiz_start() {
 
     if(response.ok) {
         document.querySelector("#image_div").innerHTML= `<img class="image" src="${image}">`;
+        document.querySelector(".image").style.border = "orchid solid 2px";
     } else {
         document.querySelector("#image_div").innerHTML= `<img class="image" src="media/logo.png">`;
     };
@@ -69,16 +74,13 @@ async function quiz_start() {
     contact.classList.add("hide");
 
     let random_number_plus_one = random_number(4) + 1;
-    console.log(random_number_plus_one);
     let right_div = document.getElementById(`option${random_number_plus_one}`);
     right_div.textContent = breed.name;
     let right_answer = right_div.textContent;
-    console.log(right_answer);
 
     for(let i = 1; i < 5; i++) {
         if(document.getElementById(`option${i}`).textContent === "") {
             let random_breed = ALL_BREEDS[random_number(ALL_BREEDS.length)].name;
-            console.log(random_breed);
             document.getElementById(`option${i}`).textContent = random_breed;
         };
     }
@@ -92,14 +94,14 @@ async function quiz_start() {
 
         if(event.target.textContent === right_answer) {
             document.getElementById("answer_feedback").classList.remove("hide");
-            document.getElementById("correct_or_false").textContent = "CORRECT!";
-            document.getElementById("answer_div").style.backgroundColor = "lightpink";
+            document.getElementById("correct_or_false").textContent = "CORRECT! :D";
+            document.getElementById("answer_div").style.backgroundColor = "orchid";
             document.getElementById("answer_button").textContent = "ONE MORE";
             document.getElementById("answer_button").addEventListener("click", restart_quiz);
         } else if(event.target.textContent !== right_answer) {
             document.getElementById("answer_feedback").classList.remove("hide");
             document.getElementById("answer_div").style.backgroundColor = "hotpink";
-            document.getElementById("correct_or_false").textContent = "Wrong Answer!";
+            document.getElementById("correct_or_false").textContent = "Wrong Answer! D:";
             document.getElementById("answer_button").textContent = "ONE MORE";
             document.getElementById("answer_button").addEventListener("click", restart_quiz);
         }

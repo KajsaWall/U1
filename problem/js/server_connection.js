@@ -31,7 +31,7 @@ async function check_request(request, type) {
         if(type === "login") {
             stay_loggedin()
             contact.classList.add("hide");
-            
+
         } else if(type === "register") {
             feedback("Registration Complete. Please proceed to login.");
             contact.classList.add("hide");
@@ -84,6 +84,8 @@ function stay_loggedin() {
 function log_out () {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("isLoggedIn");
+    window.localStorage.removeItem("User");
+
     login_setup();
 }
 

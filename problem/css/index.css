@@ -84,11 +84,11 @@ footer {
     display: flex;
     justify-content: end;
     align-self: start;
-    position: absolute;
-    padding: 20px 20px 20px 0px;
-    bottom: 0px;
+    margin-top:10px;
+
 }
 
 footer > * {
     margin: 0;
+    font-size: 12px;
 }

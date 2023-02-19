@@ -14,7 +14,12 @@ function login_setup() {
     document.querySelector("#container").innerHTML = "";
     document.querySelector("main").classList.remove("register");
     document.querySelector("main").classList.add("login");
-    document.querySelector("main").style.backgroundColor="pink";
+    document.querySelector("main").style.backgroundColor="palevioletred";
+    document.querySelector("footer").classList.add("login");
+    document.querySelector("#container").classList.remove("quiz");
+    document.querySelector("footer").classList.remove("quiz");
+    document.querySelector("header").classList.remove("quiz");
+
 
     //const contact_div = document.createElement("div");
     //contact_div.setAttribute("id", "contact");
