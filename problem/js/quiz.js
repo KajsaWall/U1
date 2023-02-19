@@ -72,7 +72,6 @@ async function quiz_start() {
 
     if(response.ok) {
         document.querySelector("#image_div").innerHTML= `<img class="image" src="${image}">`;
-        document.querySelector(".image").style.border = "orchid solid 1px";
         document.querySelector(".options").classList.remove("hide");
 
     } else {
