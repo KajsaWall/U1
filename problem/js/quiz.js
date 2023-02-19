@@ -1,15 +1,17 @@
 
-function quiz_setup (user_data) {
+function quiz_setup () {
     
+    let USER = window.localStorage.getItem("User");
+
     document.querySelector("#container").innerHTML = "";
-    document.querySelector("#contact").classList.add("hide");
+  //  document.querySelector("#contact").classList.add("hide");
     document.querySelector("main").classList.remove("login");
     document.querySelector("main").classList.remove("register");
     document.querySelector("main").style.backgroundColor="plum";
 
     document.querySelector("#container").innerHTML = `
     <div id="logged_in">
-    <p id="user">${user_data.data.user_name}</p>
+    <p id="user">${USER}</p>
     <button id="logout">logout</button>
     </div>
 
@@ -24,7 +26,7 @@ function quiz_setup (user_data) {
         <div id="option4"></div>
     </div>
     `;
-    document.querySelector("#logout").addEventListener("click", login_setup);
+    document.querySelector("#logout").addEventListener("click", log_out);
 
     const answer_feedback = document.createElement("div");
     answer_feedback.setAttribute("id", "answer_feedback");
@@ -37,8 +39,11 @@ function quiz_setup (user_data) {
 
 async function quiz_start() {
 
-    document.getElementById("contact").classList.remove("hide");
-    document.querySelector("#contact > div").textContent = "Getting a random image";
+    let contact = contact_function();
+    contact.classList.remove("hide");
+    contact.innerHTML = `<div>Getting a random image...</div>`;
+
+
     document.querySelector("#image_div").innerHTML= `<img class="image" src="media/logo.png">`;
     
     document.querySelectorAll(".options > div")
@@ -61,8 +66,7 @@ async function quiz_start() {
         document.querySelector("#image_div").innerHTML= `<img class="image" src="media/logo.png">`;
     };
 
-
-    document.getElementById("contact").classList.add("hide");
+    contact.classList.add("hide");
 
     let random_number_plus_one = random_number(4) + 1;
     console.log(random_number_plus_one);

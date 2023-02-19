@@ -16,11 +16,13 @@ function login_setup() {
     document.querySelector("main").classList.add("login");
     document.querySelector("main").style.backgroundColor="pink";
 
-    const contact_div = document.createElement("div");
-    contact_div.setAttribute("id", "contact");
+    //const contact_div = document.createElement("div");
+    //contact_div.setAttribute("id", "contact");
+    //contact_div.innerHTML= `<div>Contacting server...</div>`;
+    //document.querySelector("main").append(contact_div);
+    let contact_div = contact_function();
     contact_div.classList.add("hide");
-    contact_div.innerHTML= `<div>Contacting server...</div>`;
-    document.querySelector("main").append(contact_div);
+
 
     document.querySelector("#container").innerHTML = `
     <h1>LOGIN</h1>
@@ -72,10 +74,12 @@ let prefix = "https://teaching.maumt.se/apis/access/";
 
 function login_or_register (event) {
 
+
     let _username = document.querySelector("#username").value;
     console.log(_username);
     let _password = document.querySelector("#password").value;
     console.log(_password);
+    localStorage.setItem("User", _username);
 
     if(document.querySelector("button").textContent === "Login") {
         
