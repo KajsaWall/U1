@@ -36,7 +36,7 @@ function quiz_setup() {
     const answer_feedback = document.createElement("div");
     answer_feedback.setAttribute("id", "answer_feedback");
     answer_feedback.classList.add("hide");
-    answer_feedback.innerHTML = `<div id="answer_div"> <p id="correct_or_false"></p> <button id="answer_button">ONE MORE</button> </div>`
+    answer_feedback.innerHTML = `<div id="answer_div"> <p id="correct_or_false"></p> <button id="answer_button"></button> </div>`
     document.querySelector("body").append(answer_feedback);
 
     quiz_start();
@@ -110,6 +110,7 @@ async function quiz_start() {
             document.getElementById("answer_feedback").classList.remove("hide");
             document.getElementById("correct_or_false").textContent = "CORRECT! :D";
             document.getElementById("answer_div").style.backgroundColor = "orchid";
+            document.getElementById("answer_button").textContent = "ONE MORE";
             document.getElementById("answer_button").addEventListener("click", restart_quiz);
 
         } else if(event.target.textContent !== right_answer) {
@@ -117,6 +118,7 @@ async function quiz_start() {
             document.getElementById("answer_feedback").classList.remove("hide");
             document.getElementById("correct_or_false").textContent = "Wrong Answer! D:";
             document.getElementById("answer_div").style.backgroundColor = "hotpink";
+            document.getElementById("answer_button").textContent = "ONE MORE";
             document.getElementById("answer_button").addEventListener("click", restart_quiz);
 
         }

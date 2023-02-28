@@ -34,18 +34,11 @@ button:hover {
     font-size: 20px;
     text-decoration: underline;
     padding-top: 25px;
+    padding-bottom: 90px;
 }
 
 #container > h2:hover {
     cursor: pointer;
-}
-
-main.register > #container > #link {
-    text-align: center;
-    font-family: RobotoCondensed_regular;
-    font-size: 20px;
-    text-decoration: underline;
-    padding-top: 25px;
 }
 
 #contact {

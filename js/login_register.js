@@ -1,6 +1,6 @@
 "use strict";
 
-function login_or_register_CSS_CHANGES(event) {
+function login_or_register_event(event) {
 
     if(document.querySelector("button").textContent==="Login") {
         register_setup();
@@ -9,37 +9,6 @@ function login_or_register_CSS_CHANGES(event) {
     }
 
 }
-
-function login_or_register(event) {
-
-    let prefix = "https://teaching.maumt.se/apis/access/";
-    let _username = document.querySelector("#username").value;
-    let _password = document.querySelector("#password").value;
-    localStorage.setItem("User", _username);
-
-    if(document.querySelector("button").textContent === "Login") {
-
-        const request_get = new Request (`${prefix}?action=check_credentials&user_name=${_username}&password=${_password}`);
-        check_request(request_get, "login");
-
-    } else if (document.querySelector("button").textContent === "Register") {
-
-        let body_post = {
-            action: "register",
-            user_name: _username,
-            password: _password,
-        };
-        const request_post = new Request (prefix, {
-            method: "POST",
-            headers: {"Content-type": "application/json; charset=UTF-8"},
-            body: JSON.stringify(body_post),
-        });
-        
-        check_request(request_post, "register");
-
-    }
-}
-
 
 
 function login_setup() {
@@ -71,7 +40,7 @@ function login_setup() {
     <h2 id="link">New to this? Register for free</h2>
     `;
 
-    document.getElementById("link").addEventListener("click", login_or_register_CSS_CHANGES);
+    document.getElementById("link").addEventListener("click", login_or_register_event);
     document.querySelector("button").addEventListener("click", login_or_register);
 
 }
@@ -99,8 +68,40 @@ function register_setup() {
     <h2 id="link">Already have an account? <br> Go to login</h2>
     `;
 
-    document.getElementById("link").addEventListener("click", login_or_register_CSS_CHANGES);
+    document.getElementById("link").addEventListener("click", login_or_register_event);
     document.querySelector("button").addEventListener("click", login_or_register);
 
+}
+
+
+function login_or_register(event) {
+
+    let prefix = "https://teaching.maumt.se/apis/access/";
+    let _username = document.querySelector("#username").value;
+    let _password = document.querySelector("#password").value;
+    localStorage.setItem("User", _username);
+
+    if(document.querySelector("button").textContent === "Login") {
+
+        let _prefix = `${prefix}?action=check_credentials&user_name=${_username}&password=${_password}`;
+        const request_get = new Request (_prefix);
+        check_request(request_get, "login");
+
+    } else if (document.querySelector("button").textContent === "Register") {
+
+        let body_post = {
+            action: "register",
+            user_name: _username,
+            password: _password,
+        };
+        const request_post = new Request (prefix, {
+            method: "POST",
+            headers: {"Content-type": "application/json; charset=UTF-8"},
+            body: JSON.stringify(body_post),
+        });
+        
+        check_request(request_post, "register");
+
+    }
 }
 
